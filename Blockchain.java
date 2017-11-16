@@ -26,9 +26,36 @@ public class Blockchain{
 		b.timestamp = b.getActualDate();
 		this.chain.add(b);
 	}
-	
-	private String hashBlock(){
-		return "";
+	private boolean isChainValid()
+	{
+		for (int i = 1; i <= chain.size()-1 ; i++)
+		{
+			Block currentBlock = chain.get(i);
+			Block prevBlock = chain.get(i - 1);
+			
+			try {
+				if(currentBlock.hash != currentBlock.calculateHash())
+				{
+					System.out.println("Invalid hash");
+					return false;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			if(currentBlock.prevHash != prevBlock.hash){
+				System.out.println("Invalid previous hash");
+				return false;
+			}
+			
+			if(currentBlock.index != prevBlock.index+1){
+				System.out.println("Invalid index");
+				return false;
+			}
+		}
+		
+		
+		return true;
 	}
 	
 	private long proofOfWork(){
