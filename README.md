@@ -1,3 +1,3 @@
 # Blockchain
 
-This is just a trivial begining of building a blockchain ;)
+This is just a trivial beginning of building a blockchain ;)
